@@ -1,0 +1,38 @@
+package wallet;
+
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.ServerAddress;
+import com.mongodb.BasicDBObject;
+import com.mongodb.BulkWriteOperation;
+import com.mongodb.BulkWriteResult;
+import com.mongodb.Cursor;
+import com.mongodb.DB;
+import com.mongodb.*;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.MongoCredential;
+import java.net.UnknownHostException;
+import com.mongodb.ParallelScanOptions;
+import java.util.Arrays;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@EnableAutoConfiguration
+    public class Mongo {
+        @Bean
+        public DB getDb() throws UnknownHostException, MongoException {
+            String uri="mongodb://nishant.jha@sjsu.edu:nisan1@ds043200.mongolab.com:43200/cmpe273";
+            MongoClientURI mongoClientURI=new MongoClientURI(uri);
+            MongoClient mongoClient=new MongoClient(mongoClientURI);
+            DB db=mongoClient.getDB(mongoClientURI.getDatabase());
+            db.authenticate(mongoClientURI.getUsername(),mongoClientURI.getPassword());
+            System.out.println("connection established");            
+return db;
+        }
+    }

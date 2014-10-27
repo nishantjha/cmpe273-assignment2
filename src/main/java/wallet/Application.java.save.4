@@ -1,0 +1,49 @@
+package wallet;
+
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.ComponentScan;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.ServerAddress;
+import com.mongodb.BasicDBObject;
+import com.mongodb.BulkWriteOperation;
+import com.mongodb.BulkWriteResult;
+import com.mongodb.Cursor;
+import com.mongodb.DB;
+import com.mongodb.*;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.MongoCredential;
+import com.mongodb.ParallelScanOptions;
+import java.util.Arrays;
+import java.util.List;
+
+@ComponentScan
+@EnableAutoConfiguration
+public class Application {
+public static void main(String[] args) {
+String user="mongodb://nishant.jha@sjsu.edu:nisan1@ds043200.mongolab.com:43200/cmpe273";
+String username="nishant.jha@sjsu.edu";
+String database="cmpe273";
+String password="Nisan1,.,";
+char[] pass=password.toCharArray();
+try{
+	 // To connect to mongodb server
+         MongoURI uri=new MongoURI(user);
+         MongoCredential credential = MongoCredential.createMongoCRCredential(username, database, pass);
+         Mongo mongoClient = new Mongo(new ServerAddress(uri), Arrays.aslist(credential);
+         // Now connect to your databases
+          //  DB db = mongoClient.getDB(uri.getDatabase());
+         // BasicDBObject doc = new BasicDBObject("name", "MongoDB").append("type", "database")
+          //                                               .append("count", 1)
+          //                                             .append("info", new BasicDBObject("x", 203).append("y", 102));
+        // DBCollection coll = db.createCollection("user", doc);
+}catch(Exception e){System.out.println(""+e);};
+
+SpringApplication.run(Application.class, args);
+}}
+
